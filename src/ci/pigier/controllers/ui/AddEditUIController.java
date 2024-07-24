@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-
 public class AddEditUIController extends BaseController implements Initializable {
 
     @FXML
@@ -31,22 +30,20 @@ public class AddEditUIController extends BaseController implements Initializable
 
     @FXML
     void doBack(ActionEvent event) throws IOException {
-    	navigate(event, FXMLPage.LIST.getPage());
+        navigate(event, FXMLPage.LIST.getPage());
     }
 
     @FXML
     void doClear(ActionEvent event) {
-
+        descriptionTxtArea.clear();
+        titleTxtFld.clear();
     }
 
     @FXML
     void doSave(ActionEvent event) throws IOException {
-        if (Objects.nonNull(editNote)) 
-            data.remove(editNote);
-        
         if (titleTxtFld.getText().trim().equals("")
                 || descriptionTxtArea.getText().trim().equals("")) {
-        	alert = new Alert(AlertType.WARNING);
+            alert = new Alert(AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid data to save or update!");
             alert.setContentText("Note title or description can not be empty!");
@@ -54,17 +51,40 @@ public class AddEditUIController extends BaseController implements Initializable
             return;
         }
 
-        data.add(new Note(titleTxtFld.getText(), descriptionTxtArea.getText()));
-        navigate(event, FXMLPage.LIST.getPage());
+        Note newNote = new Note(editNote != null ? editNote.getId() : 0, titleTxtFld.getText(),
+                descriptionTxtArea.getText());
+
+        alert = new Alert(AlertType.ERROR);
+        if (editNote != null) {
+            if (updateNote(newNote)) {
+                System.out.println("Note updated successfully.");
+                navigate(event, FXMLPage.LIST.getPage());
+            } else {
+                System.out.println("Error updating note.");
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Error updating note.");
+                alert.showAndWait();
+            }
+        } else {
+            if (addNote(newNote)) {
+                System.out.println("Note added successfully.");
+                navigate(event, FXMLPage.LIST.getPage());
+            } else {
+                System.out.println("Error adding note.");
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Error adding note.");
+                alert.showAndWait();
+            }
+        }
     }
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-	    if (Objects.nonNull(editNote)) {
-	        titleTxtFld.setText(editNote.getTitle());
-	        descriptionTxtArea.setText(editNote.getDescription());
-	        saveBtn.setText("Mettre à jour");
-	    }
-	}
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        if (Objects.nonNull(editNote)) {
+            titleTxtFld.setText(editNote.getTitle());
+            descriptionTxtArea.setText(editNote.getDescription());
+            saveBtn.setText(bundle.getString("button.update"));
+        }
+    }
 
 }
