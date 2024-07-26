@@ -40,7 +40,7 @@ public class LanguagesController {
         });
 
         // Default selection
-        String userLang = localeManager.getPref().get("lang",null);
+        String userLang = localeManager.getPref().get("lang","fr");
         if (userLang.equals("fr")) languageComboBox.getSelectionModel().selectFirst();
         else languageComboBox.getSelectionModel().select(1);
     }
