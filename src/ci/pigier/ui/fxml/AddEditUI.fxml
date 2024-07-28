@@ -28,9 +28,9 @@
                   </ImageView>
                </children>
             </HBox>
-            <Label alignment="CENTER" prefHeight="70.0" prefWidth="313.0" text="%app.name" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="70.0" prefWidth="310.0" text="%app.name" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="30.0" />
+                  <Font name="System Bold Italic" size="25.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="59.0">

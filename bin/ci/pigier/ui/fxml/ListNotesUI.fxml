@@ -30,21 +30,33 @@
             </HBox>
             <Label alignment="CENTER" prefHeight="70.0" prefWidth="310.0" text="%app.name" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="30.0" />
+                  <Font name="System Bold Italic" size="25.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="75.0">
                <children>
                   <Button alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#newNote" text="%button.newNote" textAlignment="CENTER" wrapText="true" />
                </children>
+
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
             </HBox>
          </children></HBox>
       <BorderPane prefHeight="50.0" prefWidth="450.0" style="-fx-border-color: black;">
          <left>
-            <TextField fx:id="searchNotes" prefHeight="36.0" prefWidth="341.0" promptText="%label.search" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets left="10.0" />
-               </BorderPane.margin></TextField>
+            <HBox prefHeight="45.0" prefWidth="341.0" alignment="CENTER">
+               <TextField fx:id="searchNotes" prefHeight="36.0" prefWidth="241.0" promptText="%label.search" BorderPane.alignment="CENTER">
+                  <HBox.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </HBox.margin>
+               </TextField>
+               <Button mnemonicParsing="false" onAction="#doRefresh" alignment="CENTER" text="%button.refresh" prefHeight="35.0" prefWidth="100.0">
+                  <font>
+                     <Font name="System Bold" size="13.0" />
+                  </font>
+               </Button>
+            </HBox>
          </left>
          <right>
             <Label fx:id="notesCount" alignment="CENTER" prefHeight="24.0" prefWidth="63.0" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -62,8 +74,8 @@
       </BorderPane>
       <TableView fx:id="notesListTable" prefHeight="415.0" prefWidth="450.0">
          <columns>
-            <TableColumn fx:id="titleTc" editable="false" prefWidth="155.0" text="%tableview.header.title" />
-            <TableColumn fx:id="descriptionTc" editable="false" prefWidth="290.0" text="%tableview.header.desc" />
+            <TableColumn fx:id="titleTc" editable="false" prefWidth="155.0" />
+            <TableColumn fx:id="descriptionTc" editable="false" prefWidth="290.0" />
          </columns>
       </TableView>
       <Separator prefWidth="200.0" />
