@@ -45,11 +45,12 @@ docker-compose up --build
 
 ## Structure
 
+```bash
 note-taking-app
 ├── src/
 │   ├── ci/pigier/controllers
 │   │   ├── BaseController.java
-├── ├── ├── AlertController.java
+│   │   ├── AlertController.java
 │   │   ├── LanguagesController.java
 │   │   └── ui
 │   │       ├── AddEditUIController.java
@@ -76,6 +77,7 @@ note-taking-app
 │   └── module-info
 ├── init.sql
 └── docker-compose.yml
+```
 
 # Contributors
 
